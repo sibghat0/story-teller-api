@@ -31,10 +31,8 @@ export class AuthService {
   }
 
   async login(email: string, password: string) {
-    console.log('LOGIN EMAIL:', email);
-    console.log('LOGIN PASSWORD:', password);
     const user = await this.userModel.findOne({ where: { email } });
-    console.log('USER FROM DB:', user?.password);
+
     if (!user) throw new UnauthorizedException('Invalid credentials');
 
     const valid = await bcrypt.compare(password, user.password);
