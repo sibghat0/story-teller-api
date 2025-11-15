@@ -1,23 +1,27 @@
-// user.model.ts
-import { Table, Column, Model } from 'sequelize-typescript';
+import { InferAttributes, InferCreationAttributes } from 'sequelize';
+import { Table, Column, Model, DataType } from 'sequelize-typescript';
 
-@Table
-export class User extends Model {
-  @Column({ allowNull: true })
-  name: string;
+@Table({ tableName: 'Users' })
+export class User extends Model<
+  InferAttributes<User>,
+  InferCreationAttributes<User>
+> {
+  @Column({
+    type: DataType.STRING,
+    allowNull: true,
+  })
+  declare name: string;
 
-  @Column({ unique: true, allowNull: true })
-  email: string;
+  @Column({
+    type: DataType.STRING,
+    unique: true,
+    allowNull: false,
+  })
+  declare email: string;
 
-  @Column({ allowNull: true })
-  password: string; // hashed for local users
-
-  @Column({ allowNull: true })
-  provider: string; // 'google' | 'facebook' | 'local'
-
-  @Column({ allowNull: true })
-  providerId: string; // provider user id
-
-  // optional hook to hash password before save if you like
-  // or hash in service when creating.
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  declare password: string;
 }
