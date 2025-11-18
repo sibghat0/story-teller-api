@@ -13,6 +13,17 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
+  generateToken(user: User) {
+    const payload: { sub: string; email: string; name: string } = {
+      sub: String(user.id),
+      email: String(user.email),
+      name: String(user.name),
+    };
+    return {
+      access_token: this.jwtService.sign(payload),
+    };
+  }
+
   async register(body: RegisterDto) {
     const existing = await this.userModel.findOne({
       where: { email: body.email },
@@ -39,12 +50,5 @@ export class AuthService {
     if (!valid) throw new UnauthorizedException('Invalid credentials');
 
     return this.generateToken(user);
-  }
-
-  generateToken(user: User) {
-    const payload = { sub: user.id, email: user.email };
-    return {
-      access_token: this.jwtService.sign(payload),
-    };
   }
 }
