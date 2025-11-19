@@ -5,6 +5,9 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigModule } from '@nestjs/config';
 import { DBCheckService } from './Checker/db.checker';
 import { AuthModule } from './auth/auth.module';
+import { TodoModule } from './todo/todo.module';
+import { ReminderModule } from './reminder/reminder.module';
+import { EventModule } from './event/event.module';
 
 @Module({
   imports: [
@@ -25,6 +28,9 @@ import { AuthModule } from './auth/auth.module';
       },
     }),
     AuthModule,
+    TodoModule,
+    ReminderModule,
+    EventModule,
   ],
   controllers: [AppController],
   providers: [AppService, DBCheckService],

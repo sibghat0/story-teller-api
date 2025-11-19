@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
-import { AuthService } from './auth.service';
+import { AuthService } from '../database/repo/auth.service';
 import { LoginDto, RegisterDto } from 'src/dto/users.dto';
 import { AuthGuard } from '@nestjs/passport';
 

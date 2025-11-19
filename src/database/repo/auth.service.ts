@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/sequelize';
-import { User } from '../database/model/user.model';
+import { User } from '../model/user.model';
 import * as bcrypt from 'bcryptjs';
 import { RegisterDto } from 'src/dto/users.dto';
 
